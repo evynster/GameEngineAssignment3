@@ -38,11 +38,25 @@ public class LevelCommandInvoker : MonoBehaviour
     {
         if (commandList.Count > 0)
         {
-            LevelCommand c = commandList.Dequeue();
-            c.Execute();
+            if(commandList.Count > 4)
+            {
+                for(int i =0; i < 5; i++)
+                {
+                    LevelCommand c = commandList.Dequeue();
+                    c.Execute();
 
-            commandHistory.Add(c);
-            counter++;
+                    commandHistory.Add(c);
+                    counter++;
+                }
+            }
+            else
+            {
+                LevelCommand c = commandList.Dequeue();
+                c.Execute();
+
+                commandHistory.Add(c);
+                counter++;
+            }
         }
     }
     public void undo()
