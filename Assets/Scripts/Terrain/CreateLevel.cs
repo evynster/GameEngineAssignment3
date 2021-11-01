@@ -165,6 +165,9 @@ public class CreateLevel : MonoBehaviour
     private void createRoom()
     {
         Structures.Room tempRoom = new Structures.Room();
+
+        int colour = Random.Range(1, 7);
+        tempRoom.colour = (BuildingFactory.buildingColour) colour;
         tempRoom.connected = false;
         /*
          * this uses the dll

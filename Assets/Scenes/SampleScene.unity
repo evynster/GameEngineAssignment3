@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 5906855915206931813, guid: 156c8d454d805a048a30467d1737bfbe, type: 3}
+  wall: {fileID: 6952523619550406695, guid: ab18c3075df49c94a8d2f41f0e01f9a9, type: 3}
   lvlStart: {fileID: 1991673099}
   white: {fileID: 2100000, guid: 7ef73053f0353274e97c350dfd203790, type: 2}
   red: {fileID: 2100000, guid: bc4e88022c11c7a43a666a81d09d8d6c, type: 2}

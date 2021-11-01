@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorFactory : MonoBehaviour
+public class BuildingFactory : MonoBehaviour
 {
 
 
     [SerializeField]
     private GameObject floor = null;
     private static GameObject floorObject;
+
+    [SerializeField]
+    private GameObject wall = null;
+    private static GameObject wallObject;
 
     [SerializeField]
     private GameObject lvlStart = null;
@@ -35,7 +39,7 @@ public class FloorFactory : MonoBehaviour
     [SerializeField]
     private Material purple = null;
     private static Material mat6;
-    public enum floorColour
+    public enum buildingColour
     {
         none,
         red,
@@ -46,7 +50,8 @@ public class FloorFactory : MonoBehaviour
         purple
     }
     private static List<GameObject> floors;
-    public static GameObject createFloor(floorColour colour)
+
+    public static GameObject createFloor(buildingColour colour)
     {
         GameObject tempFloor = null;
         for (int i = 0; i < floors.Count; i++)
@@ -61,40 +66,48 @@ public class FloorFactory : MonoBehaviour
         
         tempFloor.transform.localScale = new Vector3(200, 200, 200);
         tempFloor.layer = LayerMask.NameToLayer("Ground");
+        tempFloor = setColour(tempFloor,colour);
+        return tempFloor;
+    }
 
+    private static List<GameObject> walls;
+
+    private static GameObject setColour(GameObject building, buildingColour colour)
+    {
         switch (colour)
         {
-            case floorColour.none:
-                tempFloor.GetComponent<MeshRenderer>().material = mat0;
+            case buildingColour.none:
+                building.GetComponent<MeshRenderer>().material = mat0;
                 break;
-            case floorColour.red:
-                tempFloor.GetComponent<MeshRenderer>().material = mat1;
+            case buildingColour.red:
+                building.GetComponent<MeshRenderer>().material = mat1;
                 break;
-            case floorColour.orange:
-                tempFloor.GetComponent<MeshRenderer>().material = mat2;
+            case buildingColour.orange:
+                building.GetComponent<MeshRenderer>().material = mat2;
                 break;
-            case floorColour.yellow:
-                tempFloor.GetComponent<MeshRenderer>().material = mat3;
+            case buildingColour.yellow:
+                building.GetComponent<MeshRenderer>().material = mat3;
                 break;
-            case floorColour.green:
-                tempFloor.GetComponent<MeshRenderer>().material = mat4;
+            case buildingColour.green:
+                building.GetComponent<MeshRenderer>().material = mat4;
                 break;
-            case floorColour.blue:
-                tempFloor.GetComponent<MeshRenderer>().material = mat5;
+            case buildingColour.blue:
+                building.GetComponent<MeshRenderer>().material = mat5;
                 break;
-            case floorColour.purple:
-                tempFloor.GetComponent<MeshRenderer>().material = mat6;
+            case buildingColour.purple:
+                building.GetComponent<MeshRenderer>().material = mat6;
                 break;
             default:
+                building.GetComponent<MeshRenderer>().material = mat0;
                 break;
         }
-        return tempFloor;
+
+        return building;
     }
 
     private void Awake()
     {
         levelStart = lvlStart;
-        floorObject = floor;
         mat0 = white;
         mat1 = red;
         mat2 = orange;
@@ -102,6 +115,8 @@ public class FloorFactory : MonoBehaviour
         mat4 = green;
         mat5 = blue;
         mat6 = purple;
+
+        floorObject = floor;
         floors = new List<GameObject>();
 
         int floorMax = GetComponent<CreateLevel>().maxSizeX * GetComponent<CreateLevel>().maxSizeY;
@@ -111,6 +126,22 @@ public class FloorFactory : MonoBehaviour
             floors[i].transform.SetParent(levelStart.transform);
             floors[i].SetActive(false);
         }
+
+
+        wallObject = wall;
+        walls = new List<GameObject>();
+
+        int wallMax = floorMax * 2;
+
+        for (int i = 0; i < wallMax; i++)
+        {
+            walls.Add(Instantiate(wallObject));
+            walls[i].transform.SetParent(levelStart.transform);
+            walls[i].SetActive(false);
+        }
+
+
+
 
 
     }

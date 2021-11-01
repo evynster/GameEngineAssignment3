@@ -12,10 +12,12 @@ public class Structures
             size = new Vector2();
             connected = con;
             roomComponents = new List<GameObject>();
+            colour = BuildingFactory.buildingColour.none;
         }
         public Vector2 size;
         public Vector2 pos;
         public bool connected;
+        public BuildingFactory.buildingColour colour;
         public List<GameObject> roomComponents;
     }
     public class Hall
