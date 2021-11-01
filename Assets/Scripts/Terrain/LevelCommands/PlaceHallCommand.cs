@@ -23,6 +23,15 @@ public class PlaceHallCommand : LevelCommand
                     GameObject newFloor = BuildingFactory.createFloor(0);
                     newFloor.transform.position = new Vector3(hall.start.x * 4, 0, n * 4) + levelStart.transform.position;
                     hall.hallComponents.Add(newFloor);
+
+                    GameObject newWall1 = BuildingFactory.createWall(0);
+                    newWall1.transform.position = new Vector3((hall.start.x + 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
+                    newWall1.transform.Rotate(Vector3.forward,90);
+                    hall.hallComponents.Add(newWall1);
+                    GameObject newWall2 = BuildingFactory.createWall(0);
+                    newWall2.transform.position = new Vector3((hall.start.x - 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
+                    newWall2.transform.Rotate(Vector3.forward, 90);
+                    hall.hallComponents.Add(newWall2);
                 }
             else//hall going upwards
                 for (int n = (int)hall.start.y-1; n >= (int)hall.end.y; n--)
@@ -30,6 +39,14 @@ public class PlaceHallCommand : LevelCommand
                     GameObject newFloor = BuildingFactory.createFloor(0);
                     newFloor.transform.position = new Vector3(hall.start.x * 4, 0, n * 4) + levelStart.transform.position;
                     hall.hallComponents.Add(newFloor);
+                    GameObject newWall1 = BuildingFactory.createWall(0);
+                    newWall1.transform.position = new Vector3((hall.start.x + 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
+                    newWall1.transform.Rotate(Vector3.forward, 90);
+                    hall.hallComponents.Add(newWall1);
+                    GameObject newWall2 = BuildingFactory.createWall(0);
+                    newWall2.transform.position = new Vector3((hall.start.x - 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
+                    newWall2.transform.Rotate(Vector3.forward, 90);
+                    hall.hallComponents.Add(newWall2);
                 }
         }
         else
@@ -55,6 +72,8 @@ public class PlaceHallCommand : LevelCommand
         for (int i = 0; i < hall.hallComponents.Count; i++)
         {
             hall.hallComponents[i].SetActive(false);
+            hall.hallComponents[i].transform.rotation = Quaternion.identity;
+            hall.hallComponents[i].transform.Rotate(Vector3.left, 90);
         }
         hall.hallComponents.Clear();
     }

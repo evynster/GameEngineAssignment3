@@ -71,6 +71,23 @@ public class BuildingFactory : MonoBehaviour
     }
 
     private static List<GameObject> walls;
+    public static GameObject createWall(buildingColour colour)
+    {
+        GameObject tempWall = null;
+        for (int i = 0; i < walls.Count; i++)
+        {
+            if (!walls[i].activeSelf)
+            {
+                walls[i].SetActive(true);
+                tempWall = walls[i];
+                break;
+            }
+        }
+        tempWall.transform.localScale = new Vector3(200, 200, 200);
+        tempWall.layer = LayerMask.NameToLayer("Ground");
+        tempWall = setColour(tempWall, colour);
+        return tempWall;
+    }
 
     private static GameObject setColour(GameObject building, buildingColour colour)
     {

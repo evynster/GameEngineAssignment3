@@ -93,7 +93,10 @@ public class CreateLevel : MonoBehaviour
         generateAmount.generations++;
         for(int i = levelstart.transform.childCount; i > 0; i--)
         {
+            levelstart.transform.GetChild(i - 1).transform.rotation = Quaternion.identity;
+            levelstart.transform.GetChild(i - 1).transform.Rotate(Vector3.left,90);
             levelstart.transform.GetChild(i - 1).gameObject.SetActive(false);
+            
         }
 
 
@@ -577,6 +580,8 @@ public class CreateLevel : MonoBehaviour
         Marshal.Copy(start, result, 0, arrayLength);
         for (int i = levelstart.transform.childCount; i > 0; i--)
         {
+            levelstart.transform.GetChild(i - 1).transform.rotation = Quaternion.identity;
+            levelstart.transform.GetChild(i - 1).transform.Rotate(Vector3.left, 90);
             levelstart.transform.GetChild(i - 1).gameObject.SetActive(false); ;
         }
 
