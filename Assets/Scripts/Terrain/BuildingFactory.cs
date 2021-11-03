@@ -15,6 +15,10 @@ public class BuildingFactory : MonoBehaviour
     private static GameObject wallObject;
 
     [SerializeField]
+    private GameObject door = null;
+    private static GameObject doorObject;
+
+    [SerializeField]
     private GameObject lvlStart = null;
     private static GameObject levelStart;
 
@@ -88,6 +92,24 @@ public class BuildingFactory : MonoBehaviour
         tempWall = setColour(tempWall, colour);
         return tempWall;
     }
+    private static List<GameObject> doors;
+    public static GameObject createDoor(buildingColour colour)
+    {
+        GameObject tempDoor = null;
+        for (int i = 0; i < doors.Count; i++)
+        {
+            if (!doors[i].activeSelf)
+            {
+                doors[i].SetActive(true);
+                tempDoor = doors[i];
+                break;
+            }
+        }
+        tempDoor.transform.localScale = new Vector3(200, 200, 200);
+        tempDoor.layer = LayerMask.NameToLayer("Ground");
+        tempDoor = setColour(tempDoor, colour);
+        return tempDoor;
+    }
 
     private static GameObject setColour(GameObject building, buildingColour colour)
     {
@@ -157,9 +179,15 @@ public class BuildingFactory : MonoBehaviour
             walls[i].SetActive(false);
         }
 
-
-
-
+        doorObject = door;
+        doors = new List<GameObject>();
+        int doorMax = GetComponent<CreateLevel>().maxRooms * 2;
+        for (int i = 0; i < doorMax; i++)
+        {
+            doors.Add(Instantiate(doorObject));
+            doors[i].transform.SetParent(levelStart.transform);
+            doors[i].SetActive(false);
+        }
 
     }
 }

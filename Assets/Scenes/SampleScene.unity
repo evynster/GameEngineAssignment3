@@ -281,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor: {fileID: 5906855915206931813, guid: 156c8d454d805a048a30467d1737bfbe, type: 3}
   wall: {fileID: 6952523619550406695, guid: ab18c3075df49c94a8d2f41f0e01f9a9, type: 3}
+  door: {fileID: 4253088953836580612, guid: 12a6f8de31937504b8a640a09964262e, type: 3}
   lvlStart: {fileID: 1991673099}
   white: {fileID: 2100000, guid: 7ef73053f0353274e97c350dfd203790, type: 2}
   red: {fileID: 2100000, guid: bc4e88022c11c7a43a666a81d09d8d6c, type: 2}
@@ -1637,13 +1638,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.50415075, y: 0, z: 0, w: 0.8636157}
+  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60.55, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
 --- !u!1 &748581836
 GameObject:
   m_ObjectHideFlags: 0

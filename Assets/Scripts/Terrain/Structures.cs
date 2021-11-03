@@ -13,12 +13,14 @@ public class Structures
             connected = con;
             roomComponents = new List<GameObject>();
             colour = BuildingFactory.buildingColour.none;
+            connectedHalls = new List<Hall>();
         }
         public Vector2 size;
         public Vector2 pos;
         public bool connected;
         public BuildingFactory.buildingColour colour;
         public List<GameObject> roomComponents;
+        public List<Hall> connectedHalls;
     }
     public class Hall
     {

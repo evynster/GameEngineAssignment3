@@ -26,7 +26,7 @@ public class PlaceHallCommand : LevelCommand
 
                     GameObject newWall1 = BuildingFactory.createWall(0);
                     newWall1.transform.position = new Vector3((hall.start.x + 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
-                    newWall1.transform.Rotate(Vector3.forward,90);
+                    newWall1.transform.Rotate(Vector3.forward,270);
                     hall.hallComponents.Add(newWall1);
                     GameObject newWall2 = BuildingFactory.createWall(0);
                     newWall2.transform.position = new Vector3((hall.start.x - 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
@@ -42,7 +42,7 @@ public class PlaceHallCommand : LevelCommand
 
                     GameObject newWall1 = BuildingFactory.createWall(0);
                     newWall1.transform.position = new Vector3((hall.start.x + 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
-                    newWall1.transform.Rotate(Vector3.forward, 90);
+                    newWall1.transform.Rotate(Vector3.forward, 270);
                     hall.hallComponents.Add(newWall1);
                     GameObject newWall2 = BuildingFactory.createWall(0);
                     newWall2.transform.position = new Vector3((hall.start.x - 0.5f) * 4, 0, (n) * 4) + levelStart.transform.position;
@@ -64,6 +64,7 @@ public class PlaceHallCommand : LevelCommand
                     hall.hallComponents.Add(newWall1);
                     GameObject newWall2 = BuildingFactory.createWall(0);
                     newWall2.transform.position = new Vector3(n * 4, 0, (hall.start.y + 0.5f) * 4) + levelStart.transform.position;
+                    newWall2.transform.Rotate(Vector3.forward, 180);
                     hall.hallComponents.Add(newWall2);
                 }
             else//hall going left
@@ -75,6 +76,7 @@ public class PlaceHallCommand : LevelCommand
 
                     GameObject newWall1 = BuildingFactory.createWall(0);
                     newWall1.transform.position = new Vector3(n * 4, 0, (hall.start.y + 0.5f) * 4) + levelStart.transform.position;
+                    newWall1.transform.Rotate(Vector3.forward, 180);
                     hall.hallComponents.Add(newWall1);
                     GameObject newWall2 = BuildingFactory.createWall(0);
                     newWall2.transform.position = new Vector3(n * 4, 0, (hall.start.y - 0.5f) * 4) + levelStart.transform.position;

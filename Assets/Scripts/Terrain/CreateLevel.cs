@@ -66,8 +66,7 @@ public class CreateLevel : MonoBehaviour
     }
     [SerializeField]
     private int minRooms = 50;
-    [SerializeField]
-    private int maxRooms = 100;
+    public int maxRooms = 100;
     [SerializeField]
     private int minRoomSize = 5;
     [SerializeField]
@@ -118,6 +117,11 @@ public class CreateLevel : MonoBehaviour
         connectedRooms.Add(unconnectedRooms[0]);
         unconnectedRooms.RemoveAt(0);
 
+        Structures.Hall startHall = new Structures.Hall();
+        startHall.start = new Vector2(0, 0);
+        startHall.end = new Vector2(-1, 0);
+        halls.Add(startHall);
+        rooms[0].connectedHalls.Add(startHall);
 
         int stuckChecker = 0;//TODO stuckchecker doesn't work
         int previousCount = 0;
@@ -380,7 +384,8 @@ public class CreateLevel : MonoBehaviour
                         unconnectedRooms.RemoveAt(i);
                     }
                 }
-               
+                closestAbove.connectedHalls.Add(tempHall);
+                room.connectedHalls.Add(tempHall);
                 halls.Add(tempHall);
             }
         }  
@@ -428,6 +433,8 @@ public class CreateLevel : MonoBehaviour
                         unconnectedRooms.RemoveAt(i);
                     }
                 }
+                closestBelow.connectedHalls.Add(tempHall);
+                room.connectedHalls.Add(tempHall);
                 halls.Add(tempHall);
             }
         }        
@@ -474,7 +481,8 @@ public class CreateLevel : MonoBehaviour
                         unconnectedRooms.RemoveAt(i);
                     }
                 }
-
+                closestLeft.connectedHalls.Add(tempHall);
+                room.connectedHalls.Add(tempHall);
                 halls.Add(tempHall);
             }
         }
@@ -521,7 +529,8 @@ public class CreateLevel : MonoBehaviour
                         unconnectedRooms.RemoveAt(i);
                     }
                 }
-
+                closestRight.connectedHalls.Add(tempHall);
+                room.connectedHalls.Add(tempHall);
                 halls.Add(tempHall);
             }
         }
