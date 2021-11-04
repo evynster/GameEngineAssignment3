@@ -31,10 +31,6 @@ public class CreateLevel : MonoBehaviour
 
     [HideInInspector]
     public SingletonGeneration generateAmount;
-
-    [SerializeField]
-    private GameObject floor = null;
-
    
     static List<Structures.Room> rooms;
     static List<Structures.Hall> halls;
@@ -117,9 +113,7 @@ public class CreateLevel : MonoBehaviour
         connectedRooms.Add(unconnectedRooms[0]);
         unconnectedRooms.RemoveAt(0);
 
-        Structures.Hall startHall = new Structures.Hall();
-        startHall.start = new Vector2(0, 0);
-        startHall.end = new Vector2(-1, 0);
+        Structures.Hall startHall = new Structures.Hall(-1,0,-2,0);
         halls.Add(startHall);
         rooms[0].connectedHalls.Add(startHall);
 
@@ -157,11 +151,11 @@ public class CreateLevel : MonoBehaviour
 
         for (int i = 0; i < rooms.Count; i++)
         {
-            LevelCommandInvoker.AddCommand(new PlaceRoomCommand(rooms[i], floor, levelstart));
+            LevelCommandInvoker.AddCommand(new PlaceRoomCommand(rooms[i], levelstart));
         }
         for (int i = 0; i < halls.Count; i++)
         {
-            LevelCommandInvoker.AddCommand(new PlaceHallCommand(halls[i], floor, levelstart));
+            LevelCommandInvoker.AddCommand(new PlaceHallCommand(halls[i], levelstart));
         }
     }
     /*
@@ -355,9 +349,6 @@ public class CreateLevel : MonoBehaviour
             }
             if (above&&aboveDist)
             {
-
-                Structures.Hall tempHall = new Structures.Hall();
-
                 int minX, maxX;
 
                 if (room.pos.x > closestAbove.pos.x)
@@ -371,10 +362,9 @@ public class CreateLevel : MonoBehaviour
                     maxX = (int)(closestAbove.pos.x + closestAbove.size.x);
 
                 int xLoc = Random.Range(minX, maxX);
-                tempHall.start = new Vector2(xLoc, room.pos.y + room.size.y);
 
-                tempHall.end = new Vector2(xLoc, closestAbove.pos.y);
-                
+                Structures.Hall tempHall = new Structures.Hall(xLoc, room.pos.y + room.size.y, xLoc, closestAbove.pos.y);
+
                 closestAbove.connected = true;
                 connectedRooms.Add(closestAbove);
                 for(int i = 0; i < unconnectedRooms.Count; i++)
@@ -404,7 +394,7 @@ public class CreateLevel : MonoBehaviour
             }
             if (below&&belowDist)
             {
-                Structures.Hall tempHall = new Structures.Hall();
+                
 
                 int minX, maxX;
 
@@ -419,9 +409,8 @@ public class CreateLevel : MonoBehaviour
                     maxX = (int)(closestBelow.pos.x + closestBelow.size.x);
 
                 int xLoc = Random.Range(minX, maxX);
-                tempHall.start = new Vector2(xLoc, room.pos.y);
 
-                tempHall.end = new Vector2(xLoc, closestBelow.pos.y + closestBelow.size.y);
+                Structures.Hall tempHall = new Structures.Hall(xLoc, room.pos.y-1, xLoc, closestBelow.pos.y + closestBelow.size.y-1);
 
                 closestBelow.connected = true;
 
@@ -453,7 +442,7 @@ public class CreateLevel : MonoBehaviour
             }
             if (left&&leftDist)
             {
-                Structures.Hall tempHall = new Structures.Hall();
+               
 
                 int minY, maxY;
 
@@ -468,9 +457,7 @@ public class CreateLevel : MonoBehaviour
                     maxY = (int)(closestLeft.pos.y + closestLeft.size.y);
 
                 int yLoc = Random.Range(minY, maxY);
-                tempHall.start = new Vector2(room.pos.x + room.size.x,yLoc);
-
-                tempHall.end = new Vector2( closestLeft.pos.x, yLoc);
+                Structures.Hall tempHall = new Structures.Hall(room.pos.x + room.size.x, yLoc, closestLeft.pos.x, yLoc);
 
                 closestLeft.connected = true;
                 connectedRooms.Add(closestLeft);
@@ -501,7 +488,7 @@ public class CreateLevel : MonoBehaviour
             }
             if (right&&rightDist)
             {
-                Structures.Hall tempHall = new Structures.Hall();
+                
 
                 int minY, maxY;
 
@@ -516,9 +503,7 @@ public class CreateLevel : MonoBehaviour
                     maxY = (int)(closestRight.pos.y + closestRight.size.y);
 
                 int yLoc = Random.Range(minY, maxY);
-                tempHall.start = new Vector2(room.pos.x, yLoc);
-
-                tempHall.end = new Vector2(closestRight.pos.x + closestRight.size.x, yLoc);
+                Structures.Hall tempHall = new Structures.Hall(room.pos.x - 1, yLoc, closestRight.pos.x + closestRight.size.x - 1, yLoc);
 
                 closestRight.connected = true;
                 connectedRooms.Add(closestRight);
@@ -613,20 +598,18 @@ public class CreateLevel : MonoBehaviour
             }
             else
             {
-                Structures.Hall tempHall = new Structures.Hall();
-                tempHall.start = temp1;
-                tempHall.end = temp2;
+                Structures.Hall tempHall = new Structures.Hall(temp1,temp2);
                 halls.Add(tempHall);
             }
         }
 
         for (int i = 0; i < rooms.Count; i++)
         {
-            LevelCommandInvoker.AddCommand(new PlaceRoomCommand(rooms[i], floor, levelstart));
+            LevelCommandInvoker.AddCommand(new PlaceRoomCommand(rooms[i], levelstart));
         }
         for (int i = 0; i < halls.Count; i++)
         {
-            LevelCommandInvoker.AddCommand(new PlaceHallCommand(halls[i], floor, levelstart));
+            LevelCommandInvoker.AddCommand(new PlaceHallCommand(halls[i], levelstart));
         }
 
 

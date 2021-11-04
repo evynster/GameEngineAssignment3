@@ -7,17 +7,25 @@ public class PlaceRoomCommand : LevelCommand
 {
     
     Structures.Room room;
-    GameObject floor;
     GameObject levelStart;
 
-    public PlaceRoomCommand(Structures.Room r,GameObject f,GameObject l)
+    public PlaceRoomCommand(Structures.Room r,GameObject l)
     {
         room = r;
-        floor = f;
         levelStart = l;
     }
     public void Execute()
     {
+        Debug.Log("Room pos " + room.pos);
+        Debug.Log("Room size + pos " + (room.pos + room.size));
+        for (int o = 0; o < room.connectedHalls.Count; o++)
+        {
+            Debug.Log("Hall number " + o);
+            Debug.Log("Hall start " + room.connectedHalls[0].start);
+            Debug.Log("Hall end " + room.connectedHalls[0].end);
+        }
+        Debug.Log("||||||||||||||||||||||||||||||||||||||||");      
+
         for (int i = 0; i < room.size.x; i++)
         {
             for (int n = 0; n < room.size.y; n++)
@@ -26,7 +34,8 @@ public class PlaceRoomCommand : LevelCommand
                 
                 newFloor.transform.position = new Vector3((room.pos.x + i) * 4, 0, (room.pos.y + n) * 4) + levelStart.transform.position;
                 room.roomComponents.Add(newFloor);
-                if (n == 0)
+                
+                if (n == 0)//bottom
                 {
                     bool door = false;
                     for(int o = 0; o < room.connectedHalls.Count; o++)
@@ -46,7 +55,7 @@ public class PlaceRoomCommand : LevelCommand
                         room.roomComponents.Add(newWall);
                     }
                 }
-                else if(n == room.size.y - 1)
+                else if(n == room.size.y - 1)//top
                 {
                     bool door = false;
                     for (int o = 0; o < room.connectedHalls.Count; o++)
@@ -69,18 +78,19 @@ public class PlaceRoomCommand : LevelCommand
                     }
                     
                 }
-                if (i == 0)
+                if (i == 0)//left
                 {
                     bool door = false;
                     for (int o = 0; o < room.connectedHalls.Count; o++)
                     {
-                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x, n + room.pos.y) || room.connectedHalls[o].end == new Vector2(i + room.pos.x, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y))
+                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x - 1, n + room.pos.y) || room.connectedHalls[o].start + room.connectedHalls[o].end == new Vector2(i - 1 + room.pos.x, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y ))
                         {
                             GameObject newDoor = BuildingFactory.createDoor(room.colour);
                             newDoor.transform.position = new Vector3((room.pos.x + i - 0.49f) * 4, 0, (room.pos.y + n) * 4) + levelStart.transform.position;
                             newDoor.transform.Rotate(Vector3.forward, 90f);
                             room.roomComponents.Add(newDoor);
                             door = true;
+                            
                         }
                     }
                     if (!door)
@@ -91,12 +101,12 @@ public class PlaceRoomCommand : LevelCommand
                         room.roomComponents.Add(newWall);
                     }
                 }
-                else if (i == room.size.x - 1)
+                else if (i == room.size.x - 1)//right
                 {
                     bool door = false;
                     for (int o = 0; o < room.connectedHalls.Count; o++)
                     {
-                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x +1, n + room.pos.y) || room.connectedHalls[o].end == new Vector2(i + room.pos.x +1, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y))
+                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x + 1, n + room.pos.y) || room.connectedHalls[o].end == new Vector2(i + room.pos.x +1, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y))
                         {
                             GameObject newDoor = BuildingFactory.createDoor(room.colour);
                             newDoor.transform.position = new Vector3((room.pos.x + i + 0.49f) * 4, 0, (room.pos.y + n) * 4) + levelStart.transform.position;

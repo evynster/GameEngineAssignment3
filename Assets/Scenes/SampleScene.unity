@@ -232,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateAmount: {fileID: 0}
-  floor: {fileID: 5906855915206931813, guid: 156c8d454d805a048a30467d1737bfbe, type: 3}
   levelstart: {fileID: 1991673099}
   maxSizeX: 100
   maxSizeY: 100
@@ -456,6 +455,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LadderObject (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270900063252188172, guid: 006c062f5ffcaba4aa81391838c7f462,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 006c062f5ffcaba4aa81391838c7f462, type: 3}
@@ -1756,6 +1760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZiplineObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3634806167087493736, guid: 2d7db3a07214597459b0f7bb8c899ae9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3634806167087493737, guid: 2d7db3a07214597459b0f7bb8c899ae9,
         type: 3}

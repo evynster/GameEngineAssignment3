@@ -22,17 +22,26 @@ public class Structures
         public List<GameObject> roomComponents;
         public List<Hall> connectedHalls;
     }
+
     public class Hall
     {
         public Hall()
+        {}
+        public Hall(Vector2 strtPos, Vector2 endPos)
         {
-            start = new Vector2();
-            end = new Vector2();
-            hallComponents = new List<GameObject>();
+            start = strtPos;
+            end = endPos;
         }
-        public Vector2 start;
-        public Vector2 end;
-        public List<GameObject> hallComponents;
+        public Hall(float sx, float sy, float ex, float ey)
+        {
+            start.x = sx;
+            start.y = sy;
+            end.x = ex;
+            end.y = ey;
+        }
+        public Vector2 start = new Vector2();
+        public Vector2 end = new Vector2();
+        public List<GameObject> hallComponents = new List<GameObject>();
     }
 
 }
