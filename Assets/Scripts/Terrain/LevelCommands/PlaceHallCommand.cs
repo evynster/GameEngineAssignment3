@@ -17,7 +17,7 @@ public class PlaceHallCommand : LevelCommand
         {
             Vector2 location = ((hall.end - hall.start).normalized*i) + hall.start;
             GameObject newFloor = BuildingFactory.createFloor(0);
-            newFloor.transform.position = new Vector3(location.x * 4, 0, location.y* 4) + levelStart.transform.position;
+            newFloor.transform.position = new Vector3(location.x * 4, 0, location.y * 4) + levelStart.transform.position;
             hall.hallComponents.Add(newFloor);
 
             float angle = Vector2.Angle((hall.end - hall.start), Vector2.right);

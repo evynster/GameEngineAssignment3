@@ -410,7 +410,7 @@ public class CreateLevel : MonoBehaviour
 
                 int xLoc = Random.Range(minX, maxX);
 
-                Structures.Hall tempHall = new Structures.Hall(xLoc, room.pos.y-1, xLoc, closestBelow.pos.y + closestBelow.size.y-1);
+                Structures.Hall tempHall = new Structures.Hall(xLoc, closestBelow.pos.y + closestBelow.size.y, xLoc, room.pos.y);
 
                 closestBelow.connected = true;
 
@@ -440,7 +440,7 @@ public class CreateLevel : MonoBehaviour
                         leftDist = true;
                 }
             }
-            if (left&&leftDist)
+            if (left&&leftDist)//left and right are backwards
             {
                
 
@@ -503,7 +503,7 @@ public class CreateLevel : MonoBehaviour
                     maxY = (int)(closestRight.pos.y + closestRight.size.y);
 
                 int yLoc = Random.Range(minY, maxY);
-                Structures.Hall tempHall = new Structures.Hall(room.pos.x - 1, yLoc, closestRight.pos.x + closestRight.size.x - 1, yLoc);
+                Structures.Hall tempHall = new Structures.Hall(closestRight.pos.x + closestRight.size.x, yLoc, room.pos.x, yLoc);
 
                 closestRight.connected = true;
                 connectedRooms.Add(closestRight);

@@ -83,7 +83,7 @@ public class PlaceRoomCommand : LevelCommand
                     bool door = false;
                     for (int o = 0; o < room.connectedHalls.Count; o++)
                     {
-                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x - 1, n + room.pos.y) || room.connectedHalls[o].start + room.connectedHalls[o].end == new Vector2(i - 1 + room.pos.x, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y ))
+                        if ((room.connectedHalls[o].start == new Vector2(i + room.pos.x , n + room.pos.y) || room.connectedHalls[o].end == new Vector2(i  + room.pos.x, n + room.pos.y)) && (room.connectedHalls[o].start.y == room.connectedHalls[o].end.y ))
                         {
                             GameObject newDoor = BuildingFactory.createDoor(room.colour);
                             newDoor.transform.position = new Vector3((room.pos.x + i - 0.49f) * 4, 0, (room.pos.y + n) * 4) + levelStart.transform.position;
