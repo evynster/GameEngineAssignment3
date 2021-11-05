@@ -29,3 +29,11 @@ In-class Labs and Lectures
  
 https://gameprogrammingpatterns.com/object-pool.html
 A refresher on Object Pools
+
+
+Tutorial
+WASD - Move
+Space - Jump
+F - Interact
+Q - Pause/Unpause (releases mouse)
+Alt-F4 - Close Game
