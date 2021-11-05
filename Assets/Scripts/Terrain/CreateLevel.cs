@@ -113,7 +113,7 @@ public class CreateLevel : MonoBehaviour
         connectedRooms.Add(unconnectedRooms[0]);
         unconnectedRooms.RemoveAt(0);
 
-        Structures.Hall startHall = new Structures.Hall(-1,0,-2,0);
+        Structures.Hall startHall = new Structures.Hall(-1,0,0,0);
         halls.Add(startHall);
         rooms[0].connectedHalls.Add(startHall);
 
